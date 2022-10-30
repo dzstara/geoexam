@@ -23,6 +23,7 @@ export interface Currency {
 }
 
 export interface Question {
+  category: QuestionCategory;
   title: string;
   answer: Answer;
   choices: Answer[];
@@ -34,4 +35,9 @@ type AnswerID = string;
 export interface Answer {
   id: AnswerID;
   content: ReactNode;
+}
+
+export enum QuestionCategory {
+  Capitals = "Capitals",
+  Flags = "Flags",
 }

@@ -1,4 +1,4 @@
-import { Answer, Country, Question } from "../types";
+import { Answer, Country, Question, QuestionCategory } from "../types";
 import { randomize } from "../util/array";
 import { getQuestionCountries } from "./util";
 
@@ -6,7 +6,8 @@ export function getFlagQuestion(): Question {
   const { country, otherCountries } = getQuestionCountries();
 
   return {
-    title: "Which country has this flag",
+    category: QuestionCategory.Flags,
+    title: "Which country has this flag?",
     answer: countryToNameAnswer(country),
     choices: randomize([country, ...otherCountries]).map(countryToNameAnswer),
     image: country.flag,
@@ -21,7 +22,8 @@ export function getReverseFlagQuestion(): Question {
   const { country, otherCountries } = getQuestionCountries();
 
   return {
-    title: "What is the flag of " + country.name,
+    category: QuestionCategory.Flags,
+    title: "What is the flag of " + country.name + "?",
     answer: countryToFlagAnswer(country),
     choices: randomize([country, ...otherCountries]).map(countryToFlagAnswer),
   };

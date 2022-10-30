@@ -7,13 +7,21 @@ export function App() {
 
   return (
     <>
+      <p>Category: {question.category}</p>
+
       {question.image && <img src={question.image} alt="Flag of a country" />}
+
+      <p>{question.title}</p>
 
       {answer ? (
         <>
           {answer === question.answer.id ? (
             <p>
-              <strong>Correct!</strong>
+              <div>{question.answer.content}</div>
+
+              <p>
+                <strong>Correct!</strong>
+              </p>
             </p>
           ) : (
             <p>
@@ -33,8 +41,6 @@ export function App() {
         </>
       ) : (
         <>
-          <p>{question.title}</p>
-
           <ul>
             {question.choices.map((c) => (
               <li key={c.id}>
