@@ -17,7 +17,7 @@ export function App() {
         <>
           {answer === question.answer.id ? (
             <p>
-              <div>{question.answer.content}</div>
+              <div>Answer: {question.answer.content}</div>
 
               <p>
                 <strong>Correct!</strong>

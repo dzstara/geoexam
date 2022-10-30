@@ -146,9 +146,10 @@ function synthesizeCountryResult(streetViewCountryListCoverage) {
       continents: split(raw.continents),
       groups: unique([...split(raw.partOf), ...split(raw.locatedOn)]),
       capitals: split(raw.capitals),
-      drivingSide: split(raw.drivingSide).filter(
-        (v) => v === "right" || v === "left"
-      )[0],
+      drivingSide:
+        split(raw.drivingSide).filter(
+          (v) => v === "right" || v === "left"
+        )[0] ?? "right", // default for the Netherlands again...
       phoneCodes: split(raw.phoneCodes),
       tlds: split(raw.tlds)
         .filter(isASCII)

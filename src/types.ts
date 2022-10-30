@@ -9,7 +9,7 @@ export interface Country {
   continents: string[];
   groups: string[];
   capitals: string[];
-  drivingSide?: "right" | "left";
+  drivingSide: "right" | "left";
   phoneCodes: string[];
   tlds: string[];
   shape: string[];
@@ -39,5 +39,6 @@ export interface Answer {
 
 export enum QuestionCategory {
   Capitals = "Capitals",
+  DrivingSide = "Driving Side",
   Flags = "Flags",
 }
