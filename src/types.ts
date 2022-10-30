@@ -11,7 +11,7 @@ export interface Country {
   capitals: string[];
   drivingSide: "right" | "left";
   phoneCodes: string[];
-  tlds: string[];
+  tld?: string;
   shape: string[];
   coverage: boolean;
   currencies: CurrencyID[];
@@ -41,4 +41,5 @@ export enum QuestionCategory {
   Capitals = "Capitals",
   DrivingSide = "Driving Side",
   Flags = "Flags",
+  TLDs = "TLDs",
 }

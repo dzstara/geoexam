@@ -151,9 +151,12 @@ function synthesizeCountryResult(streetViewCountryListCoverage) {
           (v) => v === "right" || v === "left"
         )[0] ?? "right", // default for the Netherlands again...
       phoneCodes: split(raw.phoneCodes),
-      tlds: split(raw.tlds)
+      tld: split(raw.tlds)
         .filter(isASCII)
-        .filter((tld) => tld.length === 3),
+        .filter(
+          (tld) =>
+            tld.length === 3 && tld !== ".eu" && tld !== ".su" && tld !== ".gb"
+        )[0],
       shape: raw.shape ? split(raw.shape) : [],
       coverage: streetViewCountryListCoverage.includes(raw.name),
     };
