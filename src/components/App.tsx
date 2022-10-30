@@ -1,55 +1,18 @@
 import { useState } from "react";
-import { getQuestion } from "../questions";
+import { Questions } from "./Questions";
 
 export function App() {
-  const [question, setQuestion] = useState(getQuestion());
-  const [answer, setAnswer] = useState<string | null>(null);
+  const [start, setStart] = useState(false);
 
-  return (
+  return start ? (
+    <Questions />
+  ) : (
     <>
-      <p>Category: {question.category}</p>
+      <h1>Geoexam</h1>
 
-      {question.illustration}
+      <p>Training for GeoGuessr</p>
 
-      <p>{question.title}</p>
-
-      {answer ? (
-        <>
-          {answer === question.answer.id ? (
-            <p>
-              <div>Answer: {question.answer.content}</div>
-
-              <p>
-                <strong>Correct!</strong>
-              </p>
-            </p>
-          ) : (
-            <p>
-              Incorrect, the answer was{" "}
-              <strong>{question.answer.content}</strong>
-            </p>
-          )}
-
-          <button
-            onClick={() => {
-              setQuestion(getQuestion());
-              setAnswer(null);
-            }}
-          >
-            Next question
-          </button>
-        </>
-      ) : (
-        <>
-          <ul>
-            {question.choices.map((c) => (
-              <li key={c.id}>
-                <button onClick={() => setAnswer(c.id)}>{c.content}</button>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
+      <button onClick={() => setStart(true)}>Start</button>
     </>
   );
 }
