@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { getFlagQuestion } from "../questions/flags";
+import { getQuestion } from "../questions";
 
 export function App() {
-  const [question, setQuestion] = useState(getFlagQuestion());
+  const [question, setQuestion] = useState(getQuestion());
   const [answer, setAnswer] = useState<string | null>(null);
 
   return (
@@ -24,7 +24,7 @@ export function App() {
 
           <button
             onClick={() => {
-              setQuestion(getFlagQuestion());
+              setQuestion(getQuestion());
               setAnswer(null);
             }}
           >
