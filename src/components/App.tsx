@@ -1,18 +1,20 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { StartMenu } from "./StartMenu";
 import { Questions } from "./Questions";
+import { TrainingOptions } from "../types";
 
 export function App() {
-  const [start, setStart] = useState(false);
+  const [trainingOptions, setTrainingOptions] =
+    useState<TrainingOptions | null>(null);
 
-  return start ? (
-    <Questions />
+  const onStart = useCallback(
+    (options: TrainingOptions) => setTrainingOptions(options),
+    []
+  );
+
+  return !!trainingOptions ? (
+    <Questions trainingOptions={trainingOptions} />
   ) : (
-    <>
-      <h1>Geoexam</h1>
-
-      <p>Training for GeoGuessr</p>
-
-      <button onClick={() => setStart(true)}>Start</button>
-    </>
+    <StartMenu onStart={onStart} />
   );
 }

@@ -1,8 +1,18 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { getQuestion } from "../questions";
+import { TrainingOptions } from "../types";
 
-export function Questions() {
-  const [question, setQuestion] = useState(getQuestion());
+interface QuestionsProps {
+  trainingOptions: TrainingOptions;
+}
+
+export function Questions(props: QuestionsProps) {
+  const getQuestionsWithOptions = useCallback(
+    () => getQuestion(props.trainingOptions),
+    [props.trainingOptions]
+  );
+
+  const [question, setQuestion] = useState(getQuestionsWithOptions());
   const [answer, setAnswer] = useState<string | null>(null);
 
   return (
@@ -32,7 +42,7 @@ export function Questions() {
 
           <button
             onClick={() => {
-              setQuestion(getQuestion());
+              setQuestion(getQuestionsWithOptions());
               setAnswer(null);
             }}
           >

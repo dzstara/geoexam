@@ -44,3 +44,7 @@ export enum QuestionCategory {
   TLDs = "TLDs",
   Map = "Map",
 }
+
+export interface TrainingOptions {
+  categories: QuestionCategory[];
+}
