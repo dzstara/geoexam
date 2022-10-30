@@ -1,0 +1,69 @@
+SELECT
+(?item AS ?id) (?itemLabel AS ?name) ?alpha2 ?flag ?shape
+(GROUP_CONCAT(DISTINCT ?continentLabel; SEPARATOR=";") AS ?continents)
+(GROUP_CONCAT(DISTINCT ?internationalPhoneCodeLabel; SEPARATOR=";") AS ?phoneCodes)
+(GROUP_CONCAT(DISTINCT ?drivingSideLabel; SEPARATOR=";") AS ?drivingSide)
+(GROUP_CONCAT(DISTINCT ?capitalLabel; SEPARATOR=";") AS ?capitals)
+(GROUP_CONCAT(DISTINCT ?partOfLabel; SEPARATOR=";") AS ?partOf)
+(GROUP_CONCAT(DISTINCT ?locatedOnLabel; SEPARATOR=";") AS ?locatedOn)
+(GROUP_CONCAT(DISTINCT ?currency; SEPARATOR=";") AS ?currencies)
+(GROUP_CONCAT(DISTINCT ?tldLabel; SEPARATOR=";") AS ?tlds)
+{
+  SELECT DISTINCT ?item ?itemLabel ?alpha2 ?flag ?shape ?continentLabel ?internationalPhoneCodeLabel ?drivingSideLabel ?capitalLabel ?partOfLabel ?locatedOnLabel ?currency ?tldLabel
+  WHERE {
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+  
+    # Country in the United Nations
+    ?item p:P31 [ps:P31 wd:Q6256].
+
+    MINUS {
+      # Current countries only
+      ?item p:P31 [ps:P31/wdt:P279* wd:Q3024240].
+    }
+    
+    MINUS {
+      # Not part of a federated country
+      ?item p:P31 [ps:P31/wdt:P279* wd:Q5164076].
+    }
+  
+    # ISO 3166-1 alpha-2 code
+    ?item p:P297 [ps:P297 ?alpha2; rdf:type wikibase:BestRank].
+  
+    ?item p:P41 [ps:P41 ?flag; rdf:type wikibase:BestRank].
+  
+    # Shape of the country
+    OPTIONAL {
+      ?item p:P3896 [ps:P3896 ?shape; rdf:type wikibase:BestRank].
+    }
+  
+    OPTIONAL {
+      ?item p:P38 [ps:P38 ?currency; rdf:type wikibase:BestRank].
+    }
+  
+    OPTIONAL {
+      ?item p:P36 [ps:P36 ?capital; rdf:type wikibase:BestRank].
+    }
+  
+    OPTIONAL {
+      ?item p:P361 [ps:P361 ?partOf; rdf:type wikibase:BestRank].
+    }
+  
+    OPTIONAL {
+      ?item p:P706 [ps:P706 ?locatedOn; rdf:type wikibase:BestRank].
+    }
+
+    ?item p:P30 [ps:P30 ?continent; rdf:type wikibase:BestRank].
+  
+    OPTIONAL {
+      ?item p:P1622 [ps:P1622 ?drivingSide; rdf:type wikibase:BestRank].
+    }
+  
+    ?item p:P474 [ps:P474 ?internationalPhoneCode; rdf:type wikibase:BestRank].
+  
+    OPTIONAL {
+      ?item p:P78 [ps:P78 ?tld; rdf:type wikibase:BestRank].
+    }
+  }
+}
+GROUP BY ?item ?itemLabel ?alpha2 ?flag ?shape
+ORDER BY ASC(?itemLabel)

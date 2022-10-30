@@ -1,0 +1,16 @@
+SELECT
+?id (?idLabel as ?name)
+(GROUP_CONCAT(DISTINCT ?symbolLabel; SEPARATOR=";") AS ?symbols)
+{
+  SELECT DISTINCT ?id ?idLabel ?symbolLabel WHERE {
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+    { ?id wdt:P31 wd:Q8142. } UNION { ?id wdt:P31 wd:Q13479982. }
+    OPTIONAL {
+      ?id wdt:P17 ?country.
+    }
+    OPTIONAL {
+      ?id wdt:P5061 ?symbol.
+    }
+  }
+}
+GROUP BY ?id ?idLabel
