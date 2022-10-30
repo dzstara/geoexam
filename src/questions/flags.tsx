@@ -10,7 +10,7 @@ export function getFlagQuestion(): Question {
     title: "Which country has this flag?",
     answer: countryToNameAnswer(country),
     choices: randomize([country, ...otherCountries]).map(countryToNameAnswer),
-    image: country.flag,
+    illustration: <img src={country.flag} alt="The country's flag" />,
   };
 }
 

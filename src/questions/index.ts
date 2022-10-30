@@ -2,6 +2,7 @@ import { getRandomItem } from "../util/array";
 import { getCapitalQuestion, getReverseCapitalQuestion } from "./capitals";
 import { getDrivingSideQuestion } from "./driving";
 import { getFlagQuestion, getReverseFlagQuestion } from "./flags";
+import { getMapQuestion, getReverseMapQuestion } from "./map";
 import { getTldQuestion, getReverseTldQuestion } from "./tld";
 
 const getters = [
@@ -12,6 +13,8 @@ const getters = [
   getDrivingSideQuestion,
   getTldQuestion,
   getReverseTldQuestion,
+  getMapQuestion,
+  getReverseMapQuestion,
 ];
 
 export function getQuestion() {

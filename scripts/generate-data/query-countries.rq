@@ -1,5 +1,7 @@
+# Test this query on https://query.wikidata.org/
+
 SELECT
-(?item AS ?id) (?itemLabel AS ?name) ?alpha2 ?flag ?shape
+(?item AS ?id) (?itemLabel AS ?name) ?alpha2 ?flag (?location AS ?position)
 (GROUP_CONCAT(DISTINCT ?continentLabel; SEPARATOR=";") AS ?continents)
 (GROUP_CONCAT(DISTINCT ?internationalPhoneCodeLabel; SEPARATOR=";") AS ?phoneCodes)
 (GROUP_CONCAT(DISTINCT ?drivingSideLabel; SEPARATOR=";") AS ?drivingSide)
@@ -9,7 +11,7 @@ SELECT
 (GROUP_CONCAT(DISTINCT ?currency; SEPARATOR=";") AS ?currencies)
 (GROUP_CONCAT(DISTINCT ?tldLabel; SEPARATOR=";") AS ?tlds)
 {
-  SELECT DISTINCT ?item ?itemLabel ?alpha2 ?flag ?shape ?continentLabel ?internationalPhoneCodeLabel ?drivingSideLabel ?capitalLabel ?partOfLabel ?locatedOnLabel ?currency ?tldLabel
+  SELECT DISTINCT ?item ?itemLabel ?alpha2 ?flag ?location ?continentLabel ?internationalPhoneCodeLabel ?drivingSideLabel ?capitalLabel ?partOfLabel ?locatedOnLabel ?currency ?tldLabel
   WHERE {
     SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
   
@@ -30,11 +32,8 @@ SELECT
     ?item p:P297 [ps:P297 ?alpha2; rdf:type wikibase:BestRank].
   
     ?item p:P41 [ps:P41 ?flag; rdf:type wikibase:BestRank].
-  
-    # Shape of the country
-    OPTIONAL {
-      ?item p:P3896 [ps:P3896 ?shape; rdf:type wikibase:BestRank].
-    }
+    
+    ?item p:P625 [ps:P625 ?location; rdf:type wikibase:BestRank].
   
     OPTIONAL {
       ?item p:P38 [ps:P38 ?currency; rdf:type wikibase:BestRank].
@@ -65,5 +64,5 @@ SELECT
     }
   }
 }
-GROUP BY ?item ?itemLabel ?alpha2 ?flag ?shape
+GROUP BY ?item ?itemLabel ?alpha2 ?flag ?location
 ORDER BY ASC(?itemLabel)

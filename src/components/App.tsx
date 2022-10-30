@@ -9,7 +9,7 @@ export function App() {
     <>
       <p>Category: {question.category}</p>
 
-      {question.image && <img src={question.image} alt="Flag of a country" />}
+      {question.illustration}
 
       <p>{question.title}</p>
 

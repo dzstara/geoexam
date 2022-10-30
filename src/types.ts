@@ -12,7 +12,7 @@ export interface Country {
   drivingSide: "right" | "left";
   phoneCodes: string[];
   tld?: string;
-  shape: string[];
+  position: [number, number];
   coverage: boolean;
   currencies: CurrencyID[];
 }
@@ -27,7 +27,7 @@ export interface Question {
   title: string;
   answer: Answer;
   choices: Answer[];
-  image?: string;
+  illustration?: ReactNode;
 }
 
 type AnswerID = string;
@@ -42,4 +42,5 @@ export enum QuestionCategory {
   DrivingSide = "Driving Side",
   Flags = "Flags",
   TLDs = "TLDs",
+  Map = "Map",
 }
