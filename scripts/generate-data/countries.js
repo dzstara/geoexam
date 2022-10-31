@@ -97,7 +97,7 @@ function synthesizeCountryResult(streetViewCountryListCoverage) {
             tld.length === 3 && tld !== ".eu" && tld !== ".su" && tld !== ".gb"
         )[0],
       position: parsePosition(raw.position),
-      coverage: streetViewCountryListCoverage.includes(raw.name),
+      coverage: streetViewCountryListCoverage.includes(name),
     };
   };
 }

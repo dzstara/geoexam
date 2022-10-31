@@ -26,13 +26,13 @@ export function Questions(props: QuestionsProps) {
       {answer ? (
         <>
           {answer === question.answer.id ? (
-            <p>
-              <div>Answer: {question.answer.content}</div>
+            <>
+              <p>Answer: {question.answer.content}</p>
 
               <p>
                 <strong>Correct!</strong>
               </p>
-            </p>
+            </>
           ) : (
             <p>
               Incorrect, the answer was{" "}
@@ -50,15 +50,13 @@ export function Questions(props: QuestionsProps) {
           </button>
         </>
       ) : (
-        <>
-          <ul>
-            {question.choices.map((c) => (
-              <li key={c.id}>
-                <button onClick={() => setAnswer(c.id)}>{c.content}</button>
-              </li>
-            ))}
-          </ul>
-        </>
+        <ul>
+          {question.choices.map((c) => (
+            <li key={c.id}>
+              <button onClick={() => setAnswer(c.id)}>{c.content}</button>
+            </li>
+          ))}
+        </ul>
       )}
     </>
   );

@@ -15,7 +15,20 @@ async function getStreetViewCoverage() {
 
   return $("table td b a")
     .toArray()
-    .map((element) => $(element).text());
+    .map((element) => replaceWithRecordedNames($(element).text()));
+}
+
+function replaceWithRecordedNames(wikipediaName) {
+  switch (wikipediaName) {
+    case "China":
+      return "People's Republic of China";
+    case "Eswatini (Swaziland)":
+      return "Eswatini";
+    case "Ireland":
+      return "Republic of Ireland";
+    default:
+      return wikipediaName;
+  }
 }
 
 module.exports = {
