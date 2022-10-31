@@ -1,9 +1,9 @@
-import { Answer, Country, Question, QuestionCategory } from "../types";
+import { Answer, Country, Filter, Question, QuestionCategory } from "../types";
 import { randomize } from "../util/array";
 import { getQuestionCountriesByRegion } from "./util";
 
-export function getFlagQuestion(): Question {
-  const { country, otherCountries } = getQuestionCountriesByRegion();
+export function getFlagQuestion(filter: Filter<Country>): Question {
+  const { country, otherCountries } = getQuestionCountriesByRegion(filter);
 
   return {
     category: QuestionCategory.Flags,
@@ -18,8 +18,8 @@ function countryToNameAnswer(country: Country): Answer {
   return { id: country.alpha2, content: country.name };
 }
 
-export function getReverseFlagQuestion(): Question {
-  const { country, otherCountries } = getQuestionCountriesByRegion();
+export function getReverseFlagQuestion(filter: Filter<Country>): Question {
+  const { country, otherCountries } = getQuestionCountriesByRegion(filter);
 
   return {
     category: QuestionCategory.Flags,

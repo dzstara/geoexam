@@ -3,19 +3,19 @@ import {
   getRelatedCountriesByRegion,
   getRelatedCountriesByTld,
 } from "../data/country";
-import { Country } from "../types";
-import { randomize } from "../util/array";
+import { Country, Filter } from "../types";
+import { combineFilterFns, randomize } from "../util/array";
 
 function createQuestionGetter(
   getRelated: (country: Country) => Country[],
-  filter?: (country: Country) => boolean
+  defaultFilter?: (country: Country) => boolean
 ) {
-  return function () {
-    const country = getRandomCountry(filter);
+  return function (filter: Filter<Country>) {
+    const country = getRandomCountry(combineFilterFns(defaultFilter, filter));
     const otherCountries = randomize(getRelated(country)).slice(0, 3);
 
     while (otherCountries.length < 3) {
-      otherCountries.push(getRandomCountry());
+      otherCountries.push(getRandomCountry(defaultFilter));
     }
     return { country, otherCountries };
   };

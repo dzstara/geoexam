@@ -1,5 +1,11 @@
-import { QuestionCategory, TrainingOptions } from "../types";
-import { getRandomItem } from "../util/array";
+import {
+  Country,
+  Filter,
+  Question,
+  QuestionCategory,
+  TrainingOptions,
+} from "../types";
+import { combineFilterFns, getRandomItem } from "../util/array";
 import { getCapitalQuestion, getReverseCapitalQuestion } from "./capitals";
 import { getCoverageQuestion } from "./coverage";
 import { getDrivingSideQuestion } from "./driving";
@@ -7,7 +13,21 @@ import { getFlagQuestion, getReverseFlagQuestion } from "./flags";
 import { getMapQuestion, getReverseMapQuestion } from "./map";
 import { getTldQuestion, getReverseTldQuestion } from "./tld";
 
-const getters = [
+export function getQuestion(options: TrainingOptions) {
+  const filteredGetters = getters.filter((g) =>
+    options.categories.includes(g.category)
+  );
+  const randomGetter = getRandomItem(filteredGetters);
+  const filters: Filter<Country>[] = [];
+
+  if (options.onlyCovered) {
+    filters.push((c: Country) => c.coverage);
+  }
+
+  return randomGetter.getter(combineFilterFns(...filters));
+}
+
+const getters: Getter[] = [
   { category: QuestionCategory.Flags, getter: getFlagQuestion },
   { category: QuestionCategory.Flags, getter: getReverseFlagQuestion },
   { category: QuestionCategory.Capitals, getter: getCapitalQuestion },
@@ -20,11 +40,7 @@ const getters = [
   { category: QuestionCategory.Map, getter: getReverseMapQuestion },
 ];
 
-export function getQuestion(options: TrainingOptions) {
-  const filteredGetters = getters.filter((g) =>
-    options.categories.includes(g.category)
-  );
-  const randomGetter = getRandomItem(filteredGetters);
-
-  return randomGetter.getter();
+interface Getter {
+  category: QuestionCategory;
+  getter: (filters: Filter<Country>) => Question;
 }

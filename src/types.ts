@@ -48,4 +48,7 @@ export enum QuestionCategory {
 
 export interface TrainingOptions {
   categories: QuestionCategory[];
+  onlyCovered: boolean;
 }
+
+export type Filter<T> = (a: T) => boolean;

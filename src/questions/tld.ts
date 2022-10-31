@@ -1,9 +1,9 @@
-import { Answer, Country, Question, QuestionCategory } from "../types";
+import { Answer, Country, Filter, Question, QuestionCategory } from "../types";
 import { randomize } from "../util/array";
 import { getQuestionCountriesByTld } from "./util";
 
-export function getTldQuestion(): Question {
-  const { country, otherCountries } = getQuestionCountriesByTld();
+export function getTldQuestion(filter: Filter<Country>): Question {
+  const { country, otherCountries } = getQuestionCountriesByTld(filter);
 
   return {
     category: QuestionCategory.TLDs,
@@ -13,8 +13,8 @@ export function getTldQuestion(): Question {
   };
 }
 
-export function getReverseTldQuestion(): Question {
-  const { country, otherCountries } = getQuestionCountriesByTld();
+export function getReverseTldQuestion(filter: Filter<Country>): Question {
+  const { country, otherCountries } = getQuestionCountriesByTld(filter);
 
   const answer = countryToTldAnswer(country);
 

@@ -9,6 +9,7 @@ export function StartMenu(props: StartMenuProps) {
   const { handleSubmit, register } = useForm<TrainingOptions>({
     defaultValues: {
       categories: options.map((o) => o.value),
+      onlyCovered: true,
     },
   });
 
@@ -35,6 +36,13 @@ export function StartMenu(props: StartMenuProps) {
             </li>
           ))}
         </ul>
+
+        <p>
+          <label>
+            <input type="checkbox" {...register("onlyCovered")} /> Exclude
+            countries not covered by Street View
+          </label>
+        </p>
 
         <button>Start</button>
       </form>

@@ -1,8 +1,8 @@
 import { getRandomCountry } from "../data/country";
-import { Question, QuestionCategory } from "../types";
+import { Country, Filter, Question, QuestionCategory } from "../types";
 
-export function getDrivingSideQuestion(): Question {
-  const country = getRandomCountry();
+export function getDrivingSideQuestion(filter: Filter<Country>): Question {
+  const country = getRandomCountry(filter);
 
   return {
     category: QuestionCategory.DrivingSide,

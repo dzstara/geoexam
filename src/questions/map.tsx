@@ -1,10 +1,10 @@
-import { Question, QuestionCategory } from "../types";
+import { Country, Filter, Question, QuestionCategory } from "../types";
 import { randomize } from "../util/array";
 import { getQuestionCountriesByRegion } from "./util";
 import { Map } from "../components/Map";
 
-export function getMapQuestion(): Question {
-  const { country, otherCountries } = getQuestionCountriesByRegion();
+export function getMapQuestion(filter: Filter<Country>): Question {
+  const { country, otherCountries } = getQuestionCountriesByRegion(filter);
 
   return {
     category: QuestionCategory.Map,
@@ -18,8 +18,8 @@ export function getMapQuestion(): Question {
   };
 }
 
-export function getReverseMapQuestion(): Question {
-  const { country, otherCountries } = getQuestionCountriesByRegion();
+export function getReverseMapQuestion(filter: Filter<Country>): Question {
+  const { country, otherCountries } = getQuestionCountriesByRegion(filter);
 
   return {
     category: QuestionCategory.Map,

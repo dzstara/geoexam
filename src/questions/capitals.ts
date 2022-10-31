@@ -1,9 +1,9 @@
-import { Answer, Country, Question, QuestionCategory } from "../types";
+import { Answer, Country, Filter, Question, QuestionCategory } from "../types";
 import { getRandomItem, randomize } from "../util/array";
 import { getQuestionCountriesByRegion } from "./util";
 
-export function getCapitalQuestion(): Question {
-  const { country, otherCountries } = getQuestionCountriesByRegion();
+export function getCapitalQuestion(filter: Filter<Country>): Question {
+  const { country, otherCountries } = getQuestionCountriesByRegion(filter);
 
   const capital = getRandomItem(country.capitals);
 
@@ -15,8 +15,8 @@ export function getCapitalQuestion(): Question {
   };
 }
 
-export function getReverseCapitalQuestion(): Question {
-  const { country, otherCountries } = getQuestionCountriesByRegion();
+export function getReverseCapitalQuestion(filter: Filter<Country>): Question {
+  const { country, otherCountries } = getQuestionCountriesByRegion(filter);
 
   const answer = countryToCapitalAnswer(country);
 
