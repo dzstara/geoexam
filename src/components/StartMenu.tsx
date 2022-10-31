@@ -44,6 +44,7 @@ export function StartMenu(props: StartMenuProps) {
 
 const options: StartMenuOption[] = [
   { value: QuestionCategory.Capitals, label: "Capitals" },
+  { value: QuestionCategory.Coverage, label: "Street-view coverage" },
   { value: QuestionCategory.DrivingSide, label: "Driving side" },
   { value: QuestionCategory.Flags, label: "Flags" },
   { value: QuestionCategory.Map, label: "Maps" },

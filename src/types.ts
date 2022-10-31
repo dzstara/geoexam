@@ -39,7 +39,8 @@ export interface Answer {
 
 export enum QuestionCategory {
   Capitals = "Capitals",
-  DrivingSide = "Driving Side",
+  Coverage = "Street-view coverage",
+  DrivingSide = "Driving side",
   Flags = "Flags",
   TLDs = "TLDs",
   Map = "Map",
