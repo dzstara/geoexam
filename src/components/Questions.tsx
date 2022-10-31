@@ -38,7 +38,7 @@ export function Questions(props: QuestionsProps) {
           <div>{question.answer.content}</div>
 
           <button
-            className="p-2 px-4 bg-slate-200 rounded mt-5"
+            className="p-2 px-4 bg-slate-200 dark:bg-slate-700 rounded mt-5"
             onClick={() => {
               setQuestion(getQuestionsWithOptions());
               setAnswer(null);
@@ -53,7 +53,7 @@ export function Questions(props: QuestionsProps) {
             <li key={c.id} className="shrink-0">
               <button
                 onClick={() => setAnswer(c.id)}
-                className="p-2 px-4 bg-slate-200 hover:bg-slate-300 rounded w-full flex items-center justify-center"
+                className="p-2 px-4 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded w-full flex items-center justify-center"
               >
                 {c.content}
               </button>

@@ -21,12 +21,12 @@ export function StartMenu(props: StartMenuProps) {
           <Logo />
         </div>
 
-        <p className="text-center text-[0.8em] mb-[1.5em] text-slate-600">
+        <p className="text-center text-[0.8em] mb-[1.5em] text-slate-600 dark:text-slate-300">
           Training for GeoGuessr
         </p>
 
         <form onSubmit={handleSubmit(props.onStart)}>
-          <div className="border border-slate-200 rounded p-2 px-4 bg-gray-50">
+          <div className="border border-slate-200 dark:border-slate-700 rounded p-2 px-4 bg-gray-50 dark:bg-gray-900">
             <ul className="text-[1em]">
               {options.map((o) => (
                 <li key={o.value}>
@@ -43,7 +43,7 @@ export function StartMenu(props: StartMenuProps) {
               ))}
             </ul>
 
-            <hr className="border-t border-slate-200 my-[1em]" />
+            <hr className="border-t border-slate-200 dark:border-slate-700 my-[1em]" />
 
             <div className="text-[0.8em]">
               <p>
@@ -61,7 +61,7 @@ export function StartMenu(props: StartMenuProps) {
             </div>
           </div>
 
-          <button className="block w-full mt-[1.5em] uppercase font-black tracking-tighter text-[2em] text-center py-[.4em] bg-sky-700 text-white hover:bg-sky-600 border border-sky-900/10 rounded">
+          <button className="block w-full mt-[1.5em] uppercase font-black tracking-tighter text-[2em] text-center py-[.4em] bg-sky-700 text-white  hover:bg-sky-600 border border-sky-900/10 rounded">
             Start
           </button>
         </form>

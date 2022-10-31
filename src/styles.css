@@ -7,6 +7,13 @@ html {
 }
 
 .StartMenu {
-  background-image: radial-gradient(#ddd 5%, transparent 5%);
+  --StartMenu-color: #ddd;
+  background-image: radial-gradient(var(--StartMenu-color) 5%, transparent 5%);
   background-size: 30px 30px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .StartMenu {
+    --StartMenu-color: #383838;
+  }
 }

@@ -10,7 +10,7 @@ export function Flag(props: FlagProps) {
       src={props.url}
       alt="A flag"
       className={
-        "aspect-video bg-slate-200 p-2 text-transparent " +
+        "aspect-video bg-slate-200 dark:bg-slate-700 p-2 text-transparent " +
         (props.large ? "w-64" : "w-48")
       }
     />
