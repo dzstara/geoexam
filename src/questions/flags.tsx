@@ -1,3 +1,4 @@
+import { Flag } from "../components/Flag";
 import { Answer, Country, Filter, Question, QuestionCategory } from "../types";
 import { randomize } from "../util/array";
 import { getQuestionCountriesByRegion } from "./util";
@@ -10,7 +11,7 @@ export function getFlagQuestion(filter: Filter<Country>): Question {
     title: "Which country has this flag?",
     answer: countryToNameAnswer(country),
     choices: randomize([country, ...otherCountries]).map(countryToNameAnswer),
-    illustration: <img src={country.flag} alt="The country's flag" />,
+    illustration: <Flag url={country.flag} large />,
   };
 }
 
@@ -32,6 +33,6 @@ export function getReverseFlagQuestion(filter: Filter<Country>): Question {
 function countryToFlagAnswer(country: Country): Answer {
   return {
     id: country.alpha2,
-    content: <img src={country.flag} alt="A flag" />,
+    content: <Flag url={country.flag} />,
   };
 }
