@@ -21,11 +21,11 @@ export function StartMenu(props: StartMenuProps) {
           <Logo />
         </div>
 
-        <p className="text-center text-[0.8em] mb-[1.5em] text-slate-600 dark:text-slate-300">
+        <p className="text-center text-[0.8em] text-slate-600 dark:text-slate-300">
           Training for GeoGuessr
         </p>
 
-        <form onSubmit={handleSubmit(props.onStart)}>
+        <form onSubmit={handleSubmit(props.onStart)} className="my-[2em]">
           <div className="border border-slate-200 dark:border-slate-700 rounded p-2 px-4 bg-gray-50 dark:bg-gray-900">
             <ul className="text-[1em]">
               {options.map((o) => (
@@ -61,10 +61,32 @@ export function StartMenu(props: StartMenuProps) {
             </div>
           </div>
 
-          <button className="block w-full mt-[1.5em] uppercase font-black tracking-tighter text-[2em] text-center py-[.4em] bg-sky-700 text-white  hover:bg-sky-600 border border-sky-900/10 rounded">
+          <button className="block w-full uppercase font-black tracking-tighter text-[2em] text-center mt-[0.5em] py-[.4em] bg-sky-700 text-white  hover:bg-sky-600 border border-sky-900/10 rounded">
             Start
           </button>
         </form>
+
+        <p className="mt-[2em] text-[0.7em] text-center text-slate-400 dark:text-slate-500">
+          App from{" "}
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://dzstara.xyz"
+            className="underline"
+          >
+            dzstara
+          </a>
+          , source on{" "}
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://github.com/dzstara/geoexam"
+            className="underline"
+          >
+            GitHub
+          </a>
+          .
+        </p>
       </div>
     </div>
   );
