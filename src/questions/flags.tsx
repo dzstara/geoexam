@@ -1,4 +1,5 @@
 import { Flag } from "../components/Flag";
+import { MapEmbed } from "../components/MapEmbed";
 import { Answer, Country, Filter, Question, QuestionCategory } from "../types";
 import { randomize } from "../util/array";
 import { getQuestionCountriesByRegion } from "./util";
@@ -27,6 +28,7 @@ export function getReverseFlagQuestion(filter: Filter<Country>): Question {
     title: "What is the flag of " + country.name + "?",
     answer: countryToFlagAnswer(country),
     choices: randomize([country, ...otherCountries]).map(countryToFlagAnswer),
+    illustration: <MapEmbed country={country} />,
   };
 }
 

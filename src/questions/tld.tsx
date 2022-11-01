@@ -1,3 +1,4 @@
+import { MapEmbed } from "../components/MapEmbed";
 import { Answer, Country, Filter, Question, QuestionCategory } from "../types";
 import { randomize } from "../util/array";
 import { getQuestionCountriesByTld } from "./util";
@@ -23,6 +24,7 @@ export function getReverseTldQuestion(filter: Filter<Country>): Question {
     title: "What is the top-level domain of " + country.name + "?",
     answer,
     choices: randomize([answer, ...otherCountries.map(countryToTldAnswer)]),
+    illustration: <MapEmbed country={country} />,
   };
 }
 

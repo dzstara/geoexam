@@ -1,3 +1,4 @@
+import { MapEmbed } from "../components/MapEmbed";
 import { getRandomCountry } from "../data/country";
 import { Country, Filter, Question, QuestionCategory } from "../types";
 
@@ -15,5 +16,6 @@ export function getDrivingSideQuestion(filter: Filter<Country>): Question {
       { id: "left", content: "Left" },
       { id: "right", content: "Right" },
     ],
+    illustration: <MapEmbed country={country} />,
   };
 }

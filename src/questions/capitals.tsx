@@ -1,3 +1,4 @@
+import { MapEmbed } from "../components/MapEmbed";
 import { Answer, Country, Filter, Question, QuestionCategory } from "../types";
 import { getRandomItem, randomize } from "../util/array";
 import { getQuestionCountriesByRegion } from "./util";
@@ -25,6 +26,7 @@ export function getReverseCapitalQuestion(filter: Filter<Country>): Question {
     title: "What is the capital of " + country.name + "?",
     answer,
     choices: randomize([answer, ...otherCountries.map(countryToCapitalAnswer)]),
+    illustration: <MapEmbed country={country} />,
   };
 }
 

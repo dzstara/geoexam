@@ -1,3 +1,4 @@
+import { MapEmbed } from "../components/MapEmbed";
 import { getRandomCountry } from "../data/country";
 import { Question, QuestionCategory } from "../types";
 
@@ -15,5 +16,6 @@ export function getCoverageQuestion(): Question {
       { id: "true", content: "True" },
       { id: "false", content: "False" },
     ],
+    illustration: <MapEmbed country={country} />,
   };
 }

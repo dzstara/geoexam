@@ -7,7 +7,7 @@ interface MapProps {
   country: Country;
 }
 
-export function Map(props: MapProps) {
+export function MapEmbed(props: MapProps) {
   return (
     <div className="w-full md:w-[400px]" style={{ aspectRatio: "4 / 3" }}>
       <MapContainer
