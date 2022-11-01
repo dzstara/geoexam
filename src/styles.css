@@ -17,3 +17,29 @@ html {
     --StartMenu-color: #383838;
   }
 }
+
+.fade-enter,
+.fade-appear,
+.fade-exit {
+  pointer-events: none;
+}
+
+.fade-enter,
+.fade-appear {
+  filter: opacity(0);
+}
+
+.fade-enter-active,
+.fade-appear-active {
+  filter: opacity(1);
+  transition: filter var(--fade-speed);
+}
+
+.fade-exit {
+  filter: opacity(1);
+}
+
+.fade-exit-active {
+  filter: opacity(0);
+  transition: filter var(--fade-speed);
+}

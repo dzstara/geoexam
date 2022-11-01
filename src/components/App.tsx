@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import { StartMenu } from "./StartMenu";
 import { Questions } from "./Questions";
 import { TrainingOptions } from "../types";
+import { FadeTransition } from "./FadeTransition";
 
 export function App() {
   const [trainingOptions, setTrainingOptions] =
@@ -12,9 +13,13 @@ export function App() {
     []
   );
 
-  return !!trainingOptions ? (
-    <Questions trainingOptions={trainingOptions} />
-  ) : (
-    <StartMenu onStart={onStart} />
+  return (
+    <FadeTransition state={(!!trainingOptions).toString()} speed={400}>
+      {!!trainingOptions ? (
+        <Questions trainingOptions={trainingOptions} />
+      ) : (
+        <StartMenu onStart={onStart} />
+      )}
+    </FadeTransition>
   );
 }
