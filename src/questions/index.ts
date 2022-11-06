@@ -30,8 +30,11 @@ export function getQuestion(options: TrainingOptions) {
 const getters: Getter[] = [
   { category: QuestionCategory.Flags, getter: getFlagQuestion },
   { category: QuestionCategory.Flags, getter: getReverseFlagQuestion },
-  { category: QuestionCategory.Capitals, getter: getCapitalQuestion },
-  { category: QuestionCategory.Capitals, getter: getReverseCapitalQuestion },
+  { category: QuestionCategory.CapitalCities, getter: getCapitalQuestion },
+  {
+    category: QuestionCategory.CapitalCities,
+    getter: getReverseCapitalQuestion,
+  },
   { category: QuestionCategory.Coverage, getter: getCoverageQuestion },
   { category: QuestionCategory.DrivingSide, getter: getDrivingSideQuestion },
   { category: QuestionCategory.TLDs, getter: getTldQuestion },
