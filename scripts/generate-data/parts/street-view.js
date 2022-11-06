@@ -26,6 +26,8 @@ function replaceWithRecordedNames(wikipediaName) {
       return "Eswatini";
     case "Ireland":
       return "Republic of Ireland";
+    case "United States":
+      return "United States of America";
     default:
       return wikipediaName;
   }

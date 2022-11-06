@@ -1,19 +1,23 @@
 const fs = require("fs/promises");
-const { getStreetViewCoverage } = require("./street-view");
-const { getCountryAndCurrencyData } = require("./countries");
+const { getStreetViewCoverage } = require("./parts/street-view");
+const { getCountriesInfo } = require("./parts/countries");
+const { getCurrenciesInfo } = require("./parts/currencies");
 
 async function main() {
-  console.log("Getting Street View coverage info (source: Wikipedia)");
+  console.log("Retrieving Street View coverage info (source: Wikipedia)");
 
   const streetViewCountryListCoverage = await getStreetViewCoverage();
 
-  console.log("Getting country and currency info (source: Wikidata)");
+  console.log("Retrieving country dataset (source: Wikidata)");
 
-  const { countries, currencies } = await getCountryAndCurrencyData(
-    streetViewCountryListCoverage
-  );
+  const countries = await getCountriesInfo(streetViewCountryListCoverage);
 
-  console.log("Number of countries found: ", countries.length);
+  console.log("Retrieving currency dataset (source: Wikidata)");
+
+  const currencies = await getCurrenciesInfo(countries);
+
+  console.log("Countries found: ", countries.length);
+  console.log("Currencies found:", currencies.length);
 
   await fs.writeFile(
     "./src/generated-data/alpha2.ts",
@@ -50,12 +54,12 @@ import { CurrencyID } from "./currencies";
 export const countries: { [key in Alpha2]: Country } = {` +
       countries
         .map(
-          ({ alpha2, currencies, ...c }) =>
+          ({ alpha2, currencies, languages, ...c }) =>
             `[Alpha2.${alpha2}]:{alpha2:Alpha2.${alpha2}, ${JSON.stringify(
               c
-            ).replace(/[{}]/g, "")},"currencies":[${currencies
+            ).replace(/^{|}$/g, "")},"currencies":[${currencies
               .map((c) => "CurrencyID." + c)
-              .join(",")}] }`
+              .join(",")}]}`
         )
         .join(",") +
       "}",
